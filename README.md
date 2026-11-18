@@ -210,5 +210,5 @@ All four models were frozen prior to touching the 150,000-row held-out test set.
 
 - **Challenge Advisor:** Thank you to **Annamalai Annamalai** for designing this Independent Industry Challenge, preparing the reproducible dataset splits, and guiding our team through causal uplift modeling, Intention-to-Treat (ITT) evaluation, and privacy-conscious Data Clean Room measurement.
 - **AI Studio Coach:** Thank you to **Anushka Naik** for her mentorship, feedback, and project management support throughout the Fall 2026 semester.
-- **Break Through Tech AI:** Thank you to the **Break Through Tech AI** team at Cornell Tech for their guidance and support throughout the program.
+- **Break Through Tech AI:** Thank you to the **Break Through Tech AI** team for their guidance and support throughout the program.
 - **Data Attribution:** Thank you to **Criteo AI Lab** for releasing the unbiased Criteo Uplift Prediction Dataset (v2.1) for noncommercial research and educational use.
