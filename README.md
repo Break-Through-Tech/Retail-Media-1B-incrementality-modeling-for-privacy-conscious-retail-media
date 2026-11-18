@@ -176,29 +176,39 @@ All four models were frozen prior to touching the 150,000-row held-out test set.
 
 ## 🚀 **Next Steps**
 
-**You might consider addressing the following (as applicable):**
+- **Model & Dataset Limitations:**
+  - **Intention-to-Treat (ITT) vs. Ad Exposure:** Our models estimate the causal impact of *campaign eligibility* (`treatment`) rather than actual banner viewability (`exposure`), meaning lift estimates reflect auction delivery rates alongside creative persuasiveness.
+  - **Anonymized Feature & Clean Room Boundaries:** Because `f0`–`f11` lack business definitions and user-level join keys, our pipeline cannot evaluate upstream identity match rates, cross-device resolution, user consent opt-ins, or physical in-store sales attribution. Additionally, individual uplift scores are strictly analytical outputs and cannot be exported as privacy-safe user lists without clean room aggregation guardrails.
+  - **Linear Estimator Assumptions:** Both the regularized T-Learner ($C=0.01$) and Transformed Outcome Ridge ($\alpha=100$) models rely on linear decision boundaries that may miss complex non-linear feature interactions across customer segments.
 
-* What are some of the limitations of your model?
-* What would you do differently with more time/resources?
-* What additional datasets or techniques would you explore?
+- **Improvements with More Time & Resources:**
+  - **Non-Linear Causal Meta-Learners:** With additional compute and cross-validation bandwidth, we would benchmark tree-based and neural uplift estimators—such as Causal Forests, X-Learners, and Dragonnet—to capture higher-order behavioral interactions while applying calibration techniques (e.g., isotonic regression) to control probability variance.
+  - **End-to-End Clean Room Governance Simulation:** Partner with data engineering stakeholders to integrate cryptographic hashed identity matching, differential privacy noise injection, and minimum cohort aggregation thresholds ($k$-anonymity) upstream of model scoring.
+
+- **Additional Datasets & Techniques to Explore:**
+  - **Conversion- & Revenue-Aware Multi-Task Modeling:** Incorporate richer downstream purchase signals (`conversion` and order value) using two-stage hurdle models or expected value optimization to rank audiences directly by incremental Return on Ad Spend (ROAS) rather than site visits alone.
+  - **Multi-Touch & Omnichannel Retail Data:** Combine digital ad auction logs with retailer point-of-sale (POS) loyalty data inside a clean room to measure cross-channel halo effects between online ad impressions and physical store foot traffic.
+  - **Dynamic Propensity Drift Monitoring:** Implement automated Population Stability Index (PSI) tracking on features `f0`–`f11` and rolling treatment assignment rates ($p$) to trigger recalibration when seasonal auction competition shifts.
 
 ---
 
 ## 📝 **License**
 
-Specify how your project can be used by others. Choose an appropriate license and link it here (e.g., MIT, Apache 2.0). Make sure your Challenge Advisor approves of the selected license type. 
-
-**Example:**
-This project is licensed under the MIT License.
+- **Dataset:** The prepared dataset files (`data/train.csv.gz`, `data/validation.csv.gz`, `data/test.csv.gz`) are shared for noncommercial educational use under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license, following [Criteo AI Lab](https://ailab.criteo.com/criteo-uplift-prediction-dataset/)'s distribution terms for the [Criteo Uplift Prediction Dataset (unbiased version 2.1)](https://huggingface.co/datasets/criteo/criteo-uplift). The files represent a reproducible 1,000,000-record random sample (`seed=2026`) partitioned into train, validation, and test splits; Criteo does not endorse this project or its conclusions.
+- **Code & Documentation:** Shared for noncommercial educational use in alignment with the repository's terms (see `data/` for full dataset licensing and attribution details).
 
 ---
 
-## 📄 **References** (Optional but encouraged)
+## 📄 **References**
 
-Cite relevant papers, articles, or resources that supported your project.
+1. Diemert, E., Betlei, A., Renaudin, C., Amini, M.-R., Gregoir, T., & Rahier, T. (2021). *A Large Scale Benchmark for Individual Treatment Effect Prediction and Uplift Modeling*. [arXiv:2111.10106](https://arxiv.org/abs/2111.10106).
+2. Criteo AI Lab. *Criteo Uplift Prediction Dataset (Unbiased Version 2.1)*. [Dataset Documentation](https://ailab.criteo.com/criteo-uplift-prediction-dataset/) | [Hugging Face Distribution](https://huggingface.co/datasets/criteo/criteo-uplift).
 
 ---
 
-## 🙏 **Acknowledgements** (Optional but encouraged)
+## 🙏 **Acknowledgements**
 
-Thank your Challenge Advisor, host company representatives, TA, and others who supported your project.
+- **Challenge Advisor:** Thank you to **Annamalai Annamalai** for designing this Independent Industry Challenge, preparing the reproducible dataset splits, and guiding our team through causal uplift modeling, Intention-to-Treat (ITT) evaluation, and privacy-conscious Data Clean Room measurement.
+- **AI Studio Coach:** Thank you to **Anushka Naik** for her mentorship, feedback, and project management support throughout the Fall 2026 semester.
+- **Break Through Tech AI:** Thank you to the **Break Through Tech AI** team at Cornell Tech for their guidance and support throughout the program.
+- **Data Attribution:** Thank you to **Criteo AI Lab** for releasing the unbiased Criteo Uplift Prediction Dataset (v2.1) for noncommercial research and educational use.
