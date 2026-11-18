@@ -1,7 +1,5 @@
-# AI Studio Challenge Project Title
-
-> 💡 **Note for the team:** This is just a template. Update the above title with your AI Studio Challenge Project name. Remove all guidance notes and example text in this template and populate this README with your own content. You can work on this README throughout AI Studio, and get feedback from your AI Studio Coach and Challenge Advisor before finalizing it.  
-
+# AI Studio Challenge Project:
+# Incrementality Modeling for Privacy-Conscious Retail Media and Data Clean Room Measurement
 ---
 
 ### 👥 **Team Members**
@@ -10,36 +8,103 @@
 
 | Name             | GitHub Handle | Contribution                                                             |
 |------------------|---------------|--------------------------------------------------------------------------|
-| Taylor Nguyen    | @taylornguyen | Data exploration, visualization, overall project coordination            |
-| Jordan Ramirez   | @jramirez     | Data collection, exploratory data analysis (EDA), dataset documentation  |
-| Amina Hassan     | @aminahassan  | Data preprocessing, feature engineering, data validation                 |
-| Priya Mehta      | @pmehta       | Model selection, hyperparameter tuning, model training and optimization  |
-| Chris Park       | @chrispark    | Model evaluation, performance analysis, results interpretation           |
+| Anne Argonza     | @ 
+| Adam Le          | @    
+| Sumant Munagala  | @             
+| Penny Wang       | @pennywa      |        
 
 ---
 
 ## 🎯 **Project Highlights**
 
-**Example:**
-
-- Developed a machine learning model using `[model type/technique]` to address `[challenge project task]`.
-- Achieved `[key metric or result]`, demonstrating `[value or impact]` for `[host company]`.
-- Generated actionable insights to inform business decisions at `[host company or stakeholders]`.
-- Implemented `[specific methodology]` to address industry constraints or expectations.
+- Developed causal uplift models (**Two-Model T-Learner** and **Transformed Outcome**) alongside **Random** and **Response Prediction** baselines to measure true incremental advertising impact for retail media campaigns.
+- Achieved **+6.11% Decile 1 incremental visit lift** (916 net visits, 95% CI [4.20%, 8.02%]) with the Transformed Outcome model and **+5.83% lift** (874 net visits, 95% CI [3.91%, 7.75%]) with the Two-Model T-Learner on the sealed 150,000-row held-out test set, outperforming the empirical Random Baseline (+1.67% lift).
+- Generated actionable business and privacy recommendations for **SolePeak Footwear** (advertiser) and **MarketBridge Retail Media** (retail media network), showing why concentrating spend on top-ranked uplift deciles avoids the "always-buyer" trap.
+- Implemented an **Intention-to-Treat (ITT)** causal evaluation framework across anonymized features (`f0`–`f11`), resolving an official statistical tie between causal models via overlapping 95% Wald confidence intervals and selecting the T-Learner for production stability under 85/15 treatment imbalance.
 
 ---
 
 ## 👩🏽‍💻 **Setup and Installation**
 
-**Provide step-by-step instructions so someone else can run your code and reproduce your results. Depending on your setup, include:**
+### Clone the Repository
+```bash
+git clone [https://github.com/Break-Through-Tech/TBD_Retail-Media-1A-incrementality-modeling-for-privacy-conscious-retail-media.git](https://github.com/Break-Through-Tech/TBD_Retail-Media-1A-incrementality-modeling-for-privacy-conscious-retail-media.git)
+cd TBD_Retail-Media-1A-incrementality-modeling-for-privacy-conscious-retail-media
+```
+------------------------------------------------------------------------------------------------------------------------
+### Set Up the Environment & Install Dependencies
 
-* How to clone the repository
-* How to install dependencies
-* How to set up the environment
-* How to access the dataset(s)
-* How to run the notebook or scripts
+#### Option A: Local Machine (Recommended)
+1. **Create a virtual environment** inside the project root directory:
+   ```bash
+   python -m venv .venv
+   ```
 
----
+2. **Activate the virtual environment:**
+   * **Windows (PowerShell):**
+     ```powershell
+     .venv\Scripts\Activate.ps1
+     ```
+     *(If PowerShell blocks the script, run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` once, then activate again.)*
+   * **Windows (Command Prompt):**
+     ```cmd
+     .venv\Scripts\activate.bat
+     ```
+   * **macOS / Linux:**
+     ```bash
+     source .venv/bin/activate
+     ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+#### Option B: Google Colab
+If running in Google Colab, clone the repository directly into your Colab session (all core dependencies—`pandas`, `numpy`, `scikit-learn`, `matplotlib`, and `seaborn`—are pre-installed):
+```python
+!git clone [https://github.com/Break-Through-Tech/Retail-Media-1B-incrementality-modeling-for-privacy-conscious-retail-media.git](https://github.com/Break-Through-Tech/Retail-Media-1B-incrementality-modeling-for-privacy-conscious-retail-media.git)
+%cd Retail-Media-1B-incrementality-modeling-for-privacy-conscious-retail-media
+```
+------------------------------------------------------------------------------------------------------------------------
+### Access the Dataset
+
+The repository already includes a pre-processed, reproducible 1,000,000-record random sample (`seed=2026`) of the unbiased **Criteo Uplift Prediction Dataset (v2.1)** inside the `data/` directory—no external downloads or manual unzipping are required.
+
+| File | Purpose | Records | Compressed Size |
+| :--- | :--- | :--- | :--- |
+| `data/train.csv.gz` | Train models | 700,000 | ~17.3 MB |
+| `data/validation.csv.gz` | Compare approaches and tune hyperparameters | 150,000 | ~3.7 MB |
+| `data/test.csv.gz` | Perform final held-out evaluation | 150,000 | ~3.7 MB |
+
+`pandas` reads the gzip-compressed CSV files directly:
+
+```python
+import pandas as pd
+
+train = pd.read_csv("data/train.csv.gz")
+validation = pd.read_csv("data/validation.csv.gz")
+test = pd.read_csv("data/test.csv.gz")
+```
+
+*(Note: For full source attribution, sampling methodology, and license terms under **CC BY-NC-SA 4.0**, see the documentation inside the `data/` folder.)*
+------------------------------------------------------------------------------------------------------------------------
+### Run the Notebooks
+
+To reproduce the held-out test scoring and evaluation end-to-end, run `november_held_out_test_scoring_and_evaluation.ipynb` from top to bottom:
+
+#### Option A: Interactive Execution (VS Code / Jupyter / Google Colab)
+1. Open `november_held_out_test_scoring_and_evaluation.ipynb` in VS Code, Cursor, JupyterLab, or Google Colab.
+2. Select your `.venv` Python kernel (or Google Colab runtime).
+3. Click **Restart Kernel and Run All Cells** (or **Runtime → Run all** in Colab) to execute all cells sequentially with deterministic seeds (`seed=42`).
+
+#### Option B: Command-Line Execution
+Execute the notebook headlessly from the repository root and save the outputs in place:
+```bash
+jupyter nbconvert --to notebook --execute --inplace november_held_out_test_scoring_and_evaluation.ipynb
+```
+*(Model score arrays are automatically saved to `scores/` and evaluation figures are generated inline.)*
+------------------------------------------------------------------------------------------------------------------------
 
 ## 🏗️ **Project Overview**
 
