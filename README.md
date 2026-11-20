@@ -6,12 +6,12 @@
 
 **Example:**
 
-| Name             | GitHub Handle | Contribution                                                             |
-|------------------|---------------|--------------------------------------------------------------------------|
-| Anne Argonza     | @ 
-| Adam Le          | @    
-| Sumant Munagala  | @             
-| Penny Wang       | @pennywa      |        
+| Name             | GitHub Handle   | Contribution                                                             |
+|------------------|-----------------|--------------------------------------------------------------------------|
+| Anne Argonza     | @atargonza      |
+| Adam Le          | @adamvl7        |    
+| Sumant Munagala  | @SumantMunagala |            
+| Penny Wang       | @pennywa        |        
 
 ---
 
