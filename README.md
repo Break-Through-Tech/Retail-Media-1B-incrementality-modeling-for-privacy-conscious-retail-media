@@ -4,15 +4,20 @@
 
 ### 👥 **Team Members**
 
-**Example:**
-
-| Name             | GitHub Handle   | Contribution                                                             |
-|------------------|-----------------|--------------------------------------------------------------------------|
+| Name             | GitHub Handle   | 
+|------------------|-----------------|
 | Anne Argonza     | @atargonza      |
 | Adam Le          | @adamvl7        |    
 | Sumant Munagala  | @SumantMunagala |            
 | Penny Wang       | @pennywa        |        
 
+## 👥 **Team Contributions**
+
+- **All Team Members:** Repository setup, EDA, data split verification, and final presentation.
+- **Anne:** Co-built response baseline & Transformed Outcome model; validation model summary; co-led held-out test evaluation & business interpretation.
+- **Adam:** Co-built random baseline & T-Learner; validation decile benchmarking; co-authored privacy & dataset limitations.
+- **Sumant:** Co-built random baseline & T-Learner; secondary conversion analysis; co-authored privacy & dataset limitations.
+- **Penny:** Co-built response baseline & Transformed Outcome model; validation tuning; co-led held-out test evaluation & business interpretation.
 ---
 
 ## 🎯 **Project Highlights**
